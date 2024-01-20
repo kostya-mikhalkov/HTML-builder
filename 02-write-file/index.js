@@ -10,4 +10,15 @@ const readlineInterface = readline.createInterface({
     output: process.stdout
 });
 
-console.log('Hello my friend');
+console.log('Hello my friend, enter text please');
+
+readlineInterface.prompt();
+readlineInterface.on('line', (item) => {
+    if(item === 'exit') {
+        console.log('Goodbye my friend!!!');
+        readlineInterface.close();
+        process.exit(0); // скрипт завершился без ошибок process - глобальный обьект можно использовать в любом модуле
+    }
+    writeStream.write(item);
+    readlineInterface.prompt();
+});
